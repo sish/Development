@@ -1,0 +1,12 @@
+<statemachine>
+  <states>
+    <state id="1">NEUTRAL</state>
+    <state id="2">FORWARD</state>
+    <state id="3">BACKWARD</state>
+  </states>
+  <events>
+    <event id="1">FORWARD_BTN</event>
+    <event id="2">BACKWARD_BTN</event>
+    <event id="3">NEUTRAL_BTN</event>
+  </events>
+</statemachine>
