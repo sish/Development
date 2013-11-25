@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9B48AB66-202B-49A8-A96D-B483C6AEF7FD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dotnetprogrammering_del_1</RootNamespace>
+    <AssemblyName>Dotnetprogrammering_del_1</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NavForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NavForm.Designer.cs">
+      <DependentUpon>NavForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExtraOmGrafik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExtraOmGrafik.designer.cs">
+      <DependentUpon>ExtraOmGrafik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uppg2A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uppg2A.designer.cs">
+      <DependentUpon>Uppg2A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uppg2B.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uppg2B.designer.cs">
+      <DependentUpon>Uppg2B.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uppg3C.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uppg3C.designer.cs">
+      <DependentUpon>Uppg3C.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uppg3D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uppg3D.designer.cs">
+      <DependentUpon>Uppg3D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uppg4A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uppg4A.designer.cs">
+      <DependentUpon>Uppg4A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uppg4B.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uppg4B.designer.cs">
+      <DependentUpon>Uppg4B.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uppg4C.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uppg4C.designer.cs">
+      <DependentUpon>Uppg4C.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uppg5A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uppg5A.designer.cs">
+      <DependentUpon>Uppg5A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uppg5B.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uppg5B.designer.cs">
+      <DependentUpon>Uppg5B.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uppg5C.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uppg5C.designer.cs">
+      <DependentUpon>Uppg5C.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtraStränghantering.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExtraStränghantering.designer.cs">
+      <DependentUpon>ExtraStränghantering.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="NavForm.resx">
+      <DependentUpon>NavForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ExtraOmGrafik.resx">
+      <DependentUpon>ExtraOmGrafik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uppg2A.resx">
+      <DependentUpon>Uppg2A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uppg2B.resx">
+      <DependentUpon>Uppg2B.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uppg3C.resx">
+      <DependentUpon>Uppg3C.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uppg3D.resx">
+      <DependentUpon>Uppg3D.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uppg4A.resx">
+      <DependentUpon>Uppg4A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uppg4B.resx">
+      <DependentUpon>Uppg4B.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uppg4C.resx">
+      <DependentUpon>Uppg4C.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uppg5A.resx">
+      <DependentUpon>Uppg5A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uppg5B.resx">
+      <DependentUpon>Uppg5B.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uppg5C.resx">
+      <DependentUpon>Uppg5C.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExtraStränghantering.resx">
+      <DependentUpon>ExtraStränghantering.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
