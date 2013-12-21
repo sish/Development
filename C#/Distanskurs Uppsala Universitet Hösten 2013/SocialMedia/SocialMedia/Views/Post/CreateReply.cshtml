@@ -1,0 +1,54 @@
+﻿@using SocialMedia.Other
+@model SocialMedia.ViewModels.CreateReply
+
+@{
+    ViewBag.Title = "Post Reply";
+    string OnClick = "location.href='" + Url.Action("View", "Post", new { Id = Model.PostID }) + "'";
+}
+
+<h2>Post Reply</h2>
+
+<div class="containerpost">
+    <div class="containerpostview">
+        <div class="rightside">
+            <div class="posttitle">
+                @Model.PostTitle
+            </div>
+            <div class="posttext">
+                @Model.PostText
+            </div>
+            <div class="posttagsby">
+                <div class="postby">
+                    @Model.PostTime.FormatSwedish() |
+                    @Model.PostAuthor
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Post</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Text, new { row = 10, style="width:800px;height:210px"})
+            @Html.ValidationMessageFor(model => model.Text)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+            <input type="button" value="Back" onclick="@OnClick" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

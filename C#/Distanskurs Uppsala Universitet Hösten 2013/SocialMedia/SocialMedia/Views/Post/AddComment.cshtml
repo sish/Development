@@ -1,0 +1,27 @@
+﻿@using SocialMedia.Other
+@model CreateComment
+
+@{
+    ViewBag.Title = "Add Comment";
+}
+
+<div class="containerpost">
+    <div class="containerpostview">
+        @Html.Partial("_ViewLeftSide", new ViewLeftSideModel(Model))
+        <div class="rightside">
+            <div class="posttitle">
+                @Model.Title
+            </div>
+            <div class="posttext">
+                @Model.Text
+            </div>
+            <div class="posttagsby">
+                <div class="postby">
+                    @Model.TimeOfPost.FormatSwedish() |
+                    @Html.ActionLink(Model.Author, "ByAuthor", new { id = Model.AuthorID })
+                </div>
+            </div>
+            @Html.Partial("_ViewComment", new SocialMedia.ViewModels.CommentModel(Model))
+        </div>
+    </div>
+</div>

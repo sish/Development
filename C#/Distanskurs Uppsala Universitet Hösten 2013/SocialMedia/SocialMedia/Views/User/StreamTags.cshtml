@@ -1,0 +1,13 @@
+﻿@model SocialMedia.ViewModels.PostOverview
+
+@{
+    ViewBag.Title = "Tags Followed";
+    var routeController = new { backc = "User", backa = "StreamTags" };
+    string CreateOnClick = "location.href='" + @Url.Action("Create", "Post", routeController) + "'";
+}
+
+@Html.Partial("_SubMenu", Model.SubMenu)
+
+<h2>Tags Followed</h2>
+
+@Html.Partial("_PostSmallOverview", new PostOverviewPartial(Model, CreateOnClick));

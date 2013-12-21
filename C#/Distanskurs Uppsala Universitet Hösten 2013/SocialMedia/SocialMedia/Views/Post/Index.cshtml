@@ -1,0 +1,13 @@
+﻿@model PostOverview
+@{
+    ViewBag.Title = "Index";
+    var search = Request.QueryString["search"];
+    var type = Request.QueryString["type"];
+    string CreateOnClick = "location.href='" + @Url.Action("Create", "Post") + "'";
+}
+
+@Html.Partial("_SubMenu", Model.SubMenu)
+
+<h2>Latest Posts</h2>
+
+@Html.Partial("_PostSmallOverview", new PostOverviewPartial(Model, CreateOnClick));

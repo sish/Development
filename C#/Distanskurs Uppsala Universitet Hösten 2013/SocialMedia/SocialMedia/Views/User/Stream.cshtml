@@ -1,0 +1,13 @@
+﻿@model SocialMedia.ViewModels.PostOverview
+
+@{
+    ViewBag.Title = "Stream";
+    var routeController =  new { backc = "User", backa = "Stream" };
+    string CreateOnClick = "location.href='" + @Url.Action("Create", "Post", routeController) + "'";
+}
+
+@Html.Partial("_SubMenu", Model.SubMenu)
+
+<h2>Latest Posts</h2>
+
+@Html.Partial("_PostSmallOverview", new PostOverviewPartial(Model, CreateOnClick));

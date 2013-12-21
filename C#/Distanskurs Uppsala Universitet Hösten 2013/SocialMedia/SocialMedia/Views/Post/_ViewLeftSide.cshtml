@@ -1,0 +1,81 @@
+﻿@model SocialMedia.ViewModels.ViewLeftSideModel 
+
+@{
+    var Votes = Model.UpVotes.Count - Model.DownVotes.Count;
+    var DownList = Model.DownVotes
+                    .Select(user => user.Username)
+                    .ToList()
+                    .ConvertAll(str => str.ToLower())
+                    .ToList();
+    var UpList = Model.UpVotes
+                    .Select(user => user.Username)
+                    .ToList()
+                    .ConvertAll(str => str.ToLower())
+                    .ToList();
+    string UpVote = Model.IsReply ? "This answer is useful" : "This question shows research effort, it is useful and clear";
+    string DownVote = Model.IsReply ? "This answer is not useful" : "This question does not show any research effort, it is unclear or not useful";
+    string UpPicture = UpList.Contains(User.Identity.Name.ToLower()) ? "/Images/up-vote-on.png" : "/Images/up-vote-off.png";
+    string DownPicture = DownList.Contains(User.Identity.Name.ToLower()) ? "/Images/down-vote-on.png" : "/Images/down-vote-off.png";
+}
+
+<div class="leftside">
+    <div class="uparrow">
+        @if (true != User.Identity.IsAuthenticated)
+        {
+            <img src="~/Images/up-vote-off.png" title="Need to be logged in to vote" height="42" width="42">
+        }
+        else if (User.Identity.Name.ToLower().Equals(Model.Author.ToLower()))
+        {
+            <img src="@UpPicture" title="@UpVote" height="42" width="42">
+        }
+        else 
+        {
+            <a href="@Url.Action("toggleupvote", "post", new { id = Model.ID, IsReply = Model.IsReply, HeadID = Model.HeadID })">
+                <img src="@UpPicture" title="@UpVote" height="42" width="42">
+            </a>
+        }
+    </div>
+    <div class="postvotes">
+        @Votes
+    </div>
+    <div class="downarrow">
+        @if (true != User.Identity.IsAuthenticated)
+        {
+            <img src="~/Images/down-vote-off.png" title="Need to be logged in to vote" height="42" width="42">
+        }
+        else if (User.Identity.Name.ToLower().Equals(Model.Author.ToLower()))
+        {
+            <img src="@DownPicture" title="@DownVote" height="42" width="42">
+        }
+        else 
+        {
+            <a href="@Url.Action("toggledownvote", "post", new { id = Model.ID, IsReply = Model.IsReply, HeadID = Model.HeadID })">
+                <img src="@DownPicture" title="@DownVote" height="42" width="42">
+            </a>
+        }
+    </div>
+    <div class="solution">
+        @if (true != Model.IsReply) {
+            <img src="~/Images/star.png" height="42" width="42">
+        }
+        else if (true != Model.IsSolution) {
+            if (User.Identity.Name.ToLower().Equals(Model.PostAuthor.ToLower()) && true != Model.HasSolution)
+            { 
+                <a href="@Url.Action("togglesolution", "post", new { id = Model.ID })">
+                    <img src="~/Images/star.png" height="42" width="42" title="Set as correct Answer">
+                </a>
+            } else {
+                <img src="~/Images/star.png" height="42" width="42">
+            }
+        } else {
+            if (User.Identity.Name.ToLower().Equals(Model.PostAuthor.ToLower()))
+            {
+                <a href="@Url.Action("togglesolution", "post", new { id = Model.ID })">
+                    <img src="~/Images/check.png" height="42" width="42" title="Remove as correct Answer">
+                </a>
+            } else {
+                <img src="~/Images/check.png" height="42" width="42" title="Correct Answer">
+            }
+        }
+    </div>
+</div>

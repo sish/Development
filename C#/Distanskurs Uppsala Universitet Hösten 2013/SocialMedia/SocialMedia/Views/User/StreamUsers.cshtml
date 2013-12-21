@@ -1,0 +1,13 @@
+﻿@model SocialMedia.ViewModels.PostOverview
+
+@{
+    ViewBag.Title = "Users Followed";
+    var routeController = new { backc = "User", backa = "StreamUsers" };
+    string CreateOnClick = "location.href='" + @Url.Action("Create", "Post", routeController) + "'";
+}
+
+@Html.Partial("_SubMenu", Model.SubMenu)
+
+<h2>Users Followed</h2>
+
+@Html.Partial("_PostSmallOverview", new PostOverviewPartial(Model, CreateOnClick));

@@ -1,0 +1,84 @@
+﻿@model SocialMedia.ViewModels.PostCreate
+
+@{
+    ViewBag.Title = "Create Post";
+    int rows = 10;
+    int currentRow = 0;
+    string isChecked = "";
+    var controller = Request.QueryString["backc"];
+    var action = Request.QueryString["backa"];
+    string OnClick = "location.href='";
+    if( null == controller || null == action )
+    {
+        OnClick += Url.Action("Index", "Post");
+    }
+    else
+    {
+        OnClick += Url.Action(action, controller);
+    }
+    OnClick += "'";
+}
+
+<h2>Create new Post</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Post</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Text, new { row = 10, style="width:800px;height:210px"})
+            @Html.ValidationMessageFor(model => model.Text)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Tags")
+            @Html.ValidationMessage("CheckBox")
+        </div>
+        <div class="editor-field">
+            <table class="table">
+                <tr>
+                @foreach (Tag t in Model.Tags) { 
+                    @(isChecked = Model.SelectedTags.Contains(t.Id) ? "checked=checked" : "")
+                    <td style="font-weight:bold"><input type="checkbox" name="selectedtags" value="@t.Id" @isChecked /> @t.Text</td>
+                    if (++currentRow % rows == 0)
+                    {
+                        @:</tr><tr>
+                        currentRow = 0;
+                    }
+                }
+                </tr>
+            </table>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FreeTags)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FreeTags)
+            @Html.ValidationMessageFor(model => model.FreeTags)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+            <input type="button" value="Back" onclick="@OnClick" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

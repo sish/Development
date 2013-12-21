@@ -1,0 +1,15 @@
+﻿@model SocialMedia.ViewModels.SubMenuModel
+
+<ul id="menu">
+    @foreach (MenuItem item in Model.Items)
+    {
+        if (true != item.CurrentPage)
+        {
+            <li>@Html.ActionLink(item.Text, item.Page, item.Controller)</li>
+        }
+        else 
+        { 
+            <li>@item.Text</li>
+        }
+    }
+</ul>

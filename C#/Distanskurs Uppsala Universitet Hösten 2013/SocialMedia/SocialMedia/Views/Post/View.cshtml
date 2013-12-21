@@ -1,0 +1,46 @@
+﻿@using SocialMedia.Other
+@model SocialMedia.Models.Post
+@{
+    ViewBag.Title = "View";
+    string OnReplyClick = "location.href='" + Url.Action("CreateReply", "Post", new { Id = Model.Id }) + "'";
+    string OnBackClick = "location.href='" + Url.Action("Index", "Post") + "'";
+}
+
+<div class="containerpost">
+    <div class="containerpostview">
+        @Html.Partial("_ViewLeftSide", new ViewLeftSideModel(Model) )
+        <div class="rightside">
+            <div class="posttitle">
+                @Model.Title
+            </div>
+            <div class="posttext">
+                @Model.Text
+            </div>
+            <div class="posttagsby">
+                @foreach (Tag t in Model.Tags)
+                { 
+                    <div class="posttags">
+                        @Html.ActionLink(t.Text, "ByTag", new { id = t.Id })
+                    </div>
+                }
+                <div class="postby">
+                    @Model.TimeOfPost.FormatSwedish() |
+                    @Html.ActionLink(Model.Author.Username, "ByAuthor", new { id = Model.Author.Id })
+                </div>
+            </div>
+            @Html.Partial("_ViewComment", new SocialMedia.ViewModels.CommentModel(Model))
+        </div>
+    </div>
+    <div class="viewanswers">
+        @Model.Replies.Count Answers
+        <hr class="view"/>
+    </div>
+</div>
+@foreach (PostReply r in Model.Replies)
+{
+    @Html.Partial("_ViewReply", r);
+}
+<div class="input">
+    <input type="button" value="Post Reply" onclick="@OnReplyClick" />
+    <input type="button" value="Back" onclick="@OnBackClick" />
+</div>

@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<article>
+    <p>
+        This is a project for the course Dotnetprogrammering 15.0hp (UU-26041).
+    </p>
+
+    <p>
+        Teached as distance from Uppsalla Universitet.
+    </p>
+
+    <p>
+        The base idea was a Stack Overflow like site for pictures, although
+    </p>
+
+    <p>
+        the picture part was too great a challenge to complete in time.
+    </p>
+</article>
+
+<aside>
+    <h3>Aside Title</h3>
+    <p>
+        The following is the pages I have added so far.
+    </p>
+    <ul>
+        <li>@Html.ActionLink("Home", "Stream", "User")</li>
+        <li>@Html.ActionLink("Posts", "Index", "Post")</li>
+        <li>@Html.ActionLink("Statistics", "Index", "User")</li>
+    </ul>
+</aside>

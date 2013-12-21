@@ -1,0 +1,65 @@
+﻿@using SocialMedia.ViewModels
+@model UsersModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Users list</h2>
+@using (Html.BeginForm("Index", "User", FormMethod.Post))
+{
+    <table style="border:solid">
+        <thead>
+            <tr>
+                @if (Model.IsLoggedIn)
+                { 
+                    <th style="width:15%">Name</th>
+                    <th style="width:10%;text-align:center">Following</th>
+                }
+                else 
+                {
+                    <th style="width:25%">Name</th>
+                }
+                <th style="width:15%;text-align:center"># Posts</th>
+                <th style="width:15%;text-align:center"># Replies</th>
+                <th style="width:15%;text-align:center"># Correct Answers</th>
+                <th style="width:15%;text-align:center"># Followers</th>
+                <th style="width:15%;text-align:center"># Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (UserOverView user in Model.Users)
+            {
+                <input type="hidden" name="users" value="@user.ID" />
+                <tr>
+                    @*<td>@user.Name</td>*@
+                    <td>@Html.ActionLink(@user.Name, "ByAuthor", "Post", new { Id = @user.ID }, null)</td>
+                    @if (Model.IsLoggedIn)
+                    {
+                        @*<input type="hidden" name="users" value="@user.ID" />*@
+                        if (UserOverView.FOLLOW_MYSELF == user.Following)
+                        { 
+                            <td style="text-align:center"></td>
+                        } 
+                        else
+                        {
+                            string check = (UserOverView.FOLLOW_FOLLOWING == user.Following) ? "checked=checked" : "";
+                            <td style="text-align:center"><input type="checkbox" name="following" value="@user.ID" @check /></td>
+                        }
+                    }
+                    <td style="text-align:center">@user.Posts</td>
+                    <td style="text-align:center">@user.Replies</td>
+                    <td style="text-align:center">@user.Answers</td>
+                    <td style="text-align:center">@user.Followers</td>
+                    <td style="text-align:center">@user.Comments</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+     <input type="hidden" name="redirect" value="@Request.QueryString["page"]" />
+    if (Model.IsLoggedIn)
+    {
+        <input type="submit" value="Update Followers" />
+    }
+}
+
+@Html.Partial("_Paging", Model.Pages)

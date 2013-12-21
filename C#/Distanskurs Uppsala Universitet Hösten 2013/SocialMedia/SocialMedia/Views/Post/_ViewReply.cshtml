@@ -1,0 +1,17 @@
+﻿@using SocialMedia.Other
+@model SocialMedia.Models.PostReply
+
+<div class="containerpostview">
+    @Html.Partial("_ViewLeftSide", new ViewLeftSideModel(Model))
+    <div class="rightside">
+        <div class="posttext">
+            @Model.Text
+        </div>
+        <div class="postby">
+            @Model.TimeOfPost.FormatSwedish() |
+            @Html.ActionLink(Model.Author.Username, "ByAuthor", new { id = Model.Author.Id })
+        </div>
+        @Html.Partial("_ViewComment", new SocialMedia.ViewModels.CommentModel(Model))
+    </div>
+</div>
+<hr class="reply" />

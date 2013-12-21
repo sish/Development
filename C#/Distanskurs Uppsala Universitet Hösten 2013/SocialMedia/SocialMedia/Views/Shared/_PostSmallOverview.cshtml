@@ -1,0 +1,41 @@
+﻿@model SocialMedia.ViewModels.PostOverviewPartial
+
+@{
+    var search = Request.QueryString["search"];
+    var type = Request.QueryString["type"];
+    if( null == Model.ButtonName || string.Empty == Model.ButtonName)
+    {
+        Model.ButtonName = "Create New";
+    }
+}
+
+<div style="float:left">
+    <form method="get">
+        <select name="type">
+          <option value="title" selected="@(type == "title")">Title</option>
+          <option value="user" selected="@(type == "user")">User</option>
+          <option value="text" selected="@(type == "text")">Text</option>
+        </select>
+        <input type="search" name="search" value="@search" />
+        <input type="submit" value="Search" />
+    </form>
+</div>
+<div style="float:right;padding-right:150px">
+    <input type="button" value="@Model.ButtonName" onclick="@Model.OnClick" />
+</div>
+
+<p style="margin:60px;width:800px" />
+
+@{
+    bool doAllButOnce = false;
+    foreach (PostLight post in Model.PostOverview.Posts)
+    {
+        if( doAllButOnce ) {
+            <hr style="width:800px;margin-left:0;"/>
+        }
+        else {
+            doAllButOnce = true;
+        }
+        @Html.Partial("_PostSmall", post);
+    }
+}

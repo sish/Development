@@ -1,0 +1,14 @@
+﻿@model PostOverview
+@{
+    ViewBag.Title = "Not Answered";
+    var search = Request.QueryString["search"];
+    var type = Request.QueryString["type"];
+    var routeController = new { backc = "Post", backa = "NotAnswered" };
+    string CreateOnClick = "location.href='" + @Url.Action("Create", "Post", routeController) + "'";
+}
+
+@Html.Partial("_SubMenu", Model.SubMenu)
+
+<h2>Not Answered Posts</h2>
+
+@Html.Partial("_PostSmallOverview", new PostOverviewPartial(Model, CreateOnClick))

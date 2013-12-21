@@ -1,0 +1,25 @@
+﻿@model SocialMedia.ViewModels.PostOverview
+
+@{
+    ViewBag.Title = "Posts by Author";
+    string CreateOnClick = "location.href='";
+    string ButtonName = null;
+    if (true != User.Identity.IsAuthenticated || ViewBag.IsMyself)
+    {
+        var routeController = new { backc = "Post", backa = "ByTag" };
+        CreateOnClick += @Url.Action("Create", "Post", routeController) + "'";
+    }
+    else
+    {
+        var routeController = new { Id = Url.RequestContext.RouteData.Values["id"] };
+        CreateOnClick += @Url.Action("ToggleFollowUser", "User", routeController) + "'";
+        if (true == ViewBag.IsFollower)
+            ButtonName = "Unfollow " + Model.Key.Text;
+        else
+            ButtonName = "Follow " + Model.Key.Text;
+    }
+}
+
+<h2>Latest post by Author: @Html.DisplayFor(model => model.Key.Text)</h2>
+
+@Html.Partial("_PostSmallOverview", new PostOverviewPartial(Model, CreateOnClick, ButtonName))

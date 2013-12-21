@@ -1,0 +1,21 @@
+﻿@model SocialMedia.ViewModels.Paging
+
+@if( null != Model )
+{
+    <div style="width:100%;text-align:center">
+        <p>
+            @if (Model.HasPreviousPage )
+            {
+                @Html.ActionLink("<<<", "Index", "User", new { page = (Model.PageIndex - 1) }, null);
+            }
+            @if (Model.HasPreviousPage && Model.HasNextPage)
+            {
+                @Html.Encode(" | "); 
+            }
+            @if (Model.HasNextPage )
+            {
+                @Html.ActionLink(">>>", "Index", "User", new { page = (Model.PageIndex + 1) }, null);
+            }
+        </p>
+    </div>
+}

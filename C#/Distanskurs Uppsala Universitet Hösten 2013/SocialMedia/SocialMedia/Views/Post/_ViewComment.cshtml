@@ -1,0 +1,54 @@
+﻿@using SocialMedia.Other
+@model CommentModel
+
+@{
+    int commentIndex = 1;
+    int count = Model.Comments.Count;
+}
+
+@if (count > 0)
+{
+    <hr class="comment"/>
+    <div class="comments">
+        @foreach (Comment c in Model.Comments)
+        {
+            <div class="commentindex">
+                @(commentIndex++)
+            </div>
+            <div class="commenttext">
+                @c.Text
+            </div>
+            <div class="commentby">
+                @c.TimeOfPost.FormatSwedish() |
+                @Html.ActionLink(c.Author.Username, "ByAuthor", new { id = c.Author.Id })
+            </div>
+            <hr class="comment"/>
+        }
+    </div>
+} 
+@if( true == Model.AddComment ) {
+    <form action="@Url.Action("AddComment", "Post", new { PostID = Model.PostID, ReplyID = Model.ReplyID })" method="post">
+        <div class="commenttext">
+            <textarea name="comment" rows="2" autofocus style="width:700px;margin-left:40px">
+            </textarea>
+        </div>
+    <hr class="comment"/>
+    <div class="input">
+        <input type="submit" value="Save" />
+        <input type="button" value="Back" onclick="location.href='@Url.Action("View", "Post", new { Id = Model.PostID })'" />
+    </div>
+    </form>
+}
+else
+{
+    <div class="commentlink">
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.ActionLink("add comment", "AddComment", new { PostID = Model.PostID, ReplyID = Model.ReplyID })
+        }
+        else
+        {
+            @Html.ActionLink("add comment", "Login", "Account");
+        }
+    </div>
+}

@@ -1,0 +1,52 @@
+﻿@using SocialMedia.Other
+@model SocialMedia.ViewModels.PostLight
+
+@{
+    string Title = (Model.Title.Length > 25) ? string.Format("{0}...", Model.Title.Substring(0, 22)) : Model.Title;    
+}
+
+<div id="containerpostsmall">
+    <div class="votes">
+        <div class="number">
+            @Model.Votes
+        </div>
+        <div class="number-text">
+            votes
+        </div>
+    </div>
+    <div class="votes">
+        <div class="number">
+            @Model.Answers
+        </div>
+        <div class="number-text">
+            answers
+        </div>
+    </div>
+    <div class="votes">
+        <div class="number">
+            @Model.Comments
+        </div>
+        <div class="number-text">
+            comments
+        </div>
+    </div>
+    <div class="texttags">
+        <div class="lighttitle">
+            @Html.ActionLink(Model.Title, "View", "Post", new { id = Model.PostID }, null)
+        </div>
+        <div class="tagsby">
+            <div class="tags">
+                @{
+                    foreach (IDLight tag in Model.Tags)
+                    { 
+                        <div class="posttags">@Html.ActionLink(tag.Text, "ByTag", "Post", new { id = tag.ID }, null)</div>
+                    }
+                }  
+            </div>
+            <div class="by">
+                @Html.ActionLink(Model.Author.Text, "ByAuthor", "Post", new { id = Model.Author.ID }, null) |
+                @Model.Posted.FormatSwedish()
+            </div>
+        </div>
+    </div>
+</div>
